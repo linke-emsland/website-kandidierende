@@ -1,0 +1,13 @@
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('div.date').forEach(function (element) {
+        element.remove();
+    });
+    document.querySelectorAll('a.btn.external').forEach(function (element) {
+      element.setAttribute(
+        'href',
+        'https://www.dielinke-emsland.de/kommunalwahl-2026/unsere-kandidatinnen/'
+    );
+  });
+});
+</script>
