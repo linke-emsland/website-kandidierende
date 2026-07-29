@@ -5,7 +5,7 @@ Dafür alle Kandidierenden als "Artikel" angelegt. Über das Datum des Artikels 
 
 Über die Kategorie wird eingestellt, für welchen Wahlbezirk (Kreistag/Gemeinde) der/die Kandidierende antritt.
 
-##Je nach eingestelltem Monat wird der Wahlbereich für die Kandidatur für den Kreistag angepasst:
+## Je nach eingestelltem Monat wird der Wahlbereich für die Kandidatur für den Kreistag angepasst:
         "januar": "Wahlbereich 1 - Stadt Papenburg"
         "februar": "Wahlbereich 2 - Gemeinde Rhede, Samtgemeinden Dörpen und Nordhümmling"
         "märz": "Wahlbereich 3 - Samtgemeinden Sögel und Werlte"
@@ -17,9 +17,9 @@ Dafür alle Kandidierenden als "Artikel" angelegt. Über das Datum des Artikels 
         "september": "Wahlbereich 9 - Stadt Lingen"
         "oktober": "Wahlbereich 10 - Stadt Lingen"
 
-##Je nach eingestelltem Tag wird der Wahlbereich für die Kandidatur für den jeweiligen Stadtrat angepasst:
+## Je nach eingestelltem Tag wird der Wahlbereich für die Kandidatur für den jeweiligen Stadtrat angepasst:
 
-###Lingen:
+### Lingen:
         1: "Wahlbereich 1 - Darme, Schepsdorf, Bramsche"
         2: "Wahlbereich 2 - Laxten, Gauerbach, Brockhausen, Baccum, Ramsel"
         3: "Wahlbereich 3 - Altenlingen, Holthausen, Biene, Clusorth-Bramhar, Brögbern"
@@ -27,12 +27,12 @@ Dafür alle Kandidierenden als "Artikel" angelegt. Über das Datum des Artikels 
         5: "Wahlbereich 5 - Telgenkamp, Heukampfs-Tannen, Goosmanns-Tannen, Haselünner-Str."
         6: "Wahlbereich 6 - Strootgebiet, Damaschke, Scheperjansiedlung"
         
-###Meppen:
+### Meppen:
         1: "Wahlbereich 1 - Meppen West"
         2: "Wahlbereich 2 - Meppen Ost"
         
-###Haren:
+### Haren:
         1: "Wahlbereich 1 - Haren"
         
-Papenburg:
+### Papenburg:
         1: "Wahlbereich 1 - Papenburg"
