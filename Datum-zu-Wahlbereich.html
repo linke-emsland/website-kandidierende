@@ -1,0 +1,149 @@
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const select = document.querySelector('select[name="tx_lcmssitepackage_newsfilter[filters][categories]"]');
+
+    if (!select) return;
+
+    const titel = select.options[select.selectedIndex]
+        .textContent
+        .trim()
+        .toLowerCase();
+
+    // Wenn "Bitte wählen", dann sollen die Räte angezeigt werden (Kategorien), aber nicht die Wahlbereiche (Datum)
+    // Wenn ein bestimmter Rat ausgewählt ist, soll der dementsprechende Wahlbereich angezeigt werden, aber nicht nocheinmal der Rat (Kategorie)
+    if (titel === 'bitte wählen') {
+
+        document.querySelectorAll('div.date').forEach(function (element) {
+            element.remove();
+        });
+
+        return;
+    } else {
+      document.querySelectorAll('a.kategorie').forEach(function (element) {
+          element.remove();
+      });
+    }
+
+    
+    
+
+  
+    const wbKreistag = {
+        "januar": "Wahlbereich 1 - Stadt Papenburg",
+        "februar": "Wahlbereich 2 - Gemeinde Rhede, Samtgemeinden Dörpen und Nordhümmling",
+        "märz": "Wahlbereich 3 - Samtgemeinden Sögel und Werlte",
+        "april": "Wahlbereich 4 - Stadt Haren und Samtgemeinde Lathen",
+        "mai": "Wahlbereich 5 - Stadt Meppen",
+        "juni": "Wahlbereich 6 - Stadt Haselünne, Gemeinden Geeste und Twist",
+        "juli": "Wahlbereich 7 - Gemeinden Emsbüren und Salzbergen, Samtgemeinde Spelle",
+        "august": "Wahlbereich 8 - Samtgemeinden Freren, Herzlake und Lengerich",
+        "september": "Wahlbereich 9 - Stadt Lingen",
+        "oktober": "Wahlbereich 10 - Stadt Lingen"
+    };
+
+    const wbStadtratLingen = {
+        1: "Wahlbereich 1 - Darme, Schepsdorf, Bramsche",
+        2: "Wahlbereich 2 - Laxten, Gauerbach, Brockhausen, Baccum, Ramsel",
+        3: "Wahlbereich 3 - Altenlingen, Holthausen, Biene, Clusorth-Bramhar, Brögbern",
+        4: "Wahlbereich 4 - Reuschberge, Kernstadt, Bögengebiet/Galgenesch",
+        5: "Wahlbereich 5 - Telgenkamp, Heukampfs-Tannen, Goosmanns-Tannen, Haselünner-Str.",
+        6: "Wahlbereich 6 - Strootgebiet, Damaschke, Scheperjansiedlung"
+    };
+
+    const wbStadtratMeppen = {
+        1: "Wahlbereich 1 - Meppen West",
+        2: "Wahlbereich 2 - Meppen Ost"
+    };
+
+    const wbStadtratHaren = {
+        1: "Wahlbereich 1 - Haren"
+    };
+
+    const wbStadtratPapenburg = {
+        1: "Wahlbereich 1 - Papenburg"
+    };
+
+    let aktiveWahlbereiche = null;
+    let modus = null;
+
+    // Kreistag
+    if (titel === 'kreistag emsland') {
+        aktiveWahlbereiche = wbKreistag;
+        modus = 'monat';
+    }
+
+    // Stadträte
+    else if (titel === 'stadtrat lingen') {
+        aktiveWahlbereiche = wbStadtratLingen;
+        modus = 'tag';
+    }
+
+    else if (titel === 'stadtrat meppen') {
+        aktiveWahlbereiche = wbStadtratMeppen;
+        modus = 'tag';
+    }
+
+    else if (titel === 'stadtrat haren') {
+        aktiveWahlbereiche = wbStadtratHaren;
+        modus = 'tag';
+    }
+
+    else if (titel === 'stadtrat papenburg') {
+        aktiveWahlbereiche = wbStadtratPapenburg;
+        modus = 'tag';
+    }
+
+    document.querySelectorAll('div.date').forEach(function (element) {
+
+        const text = element.textContent.trim().toLowerCase();
+
+        if (!aktiveWahlbereiche || !modus) {
+            element.remove();
+            return;
+        }
+
+        // Kreistag -> Monat auslesen
+        if (modus === 'monat') {
+
+            let gefunden = false;
+
+            for (const [monatName, wahlbereich] of Object.entries(aktiveWahlbereiche)) {
+
+                if (text.includes(monatName)) {
+                    element.textContent = wahlbereich;
+                    gefunden = true;
+                    break;
+                }
+            }
+
+            if (!gefunden) {
+                element.remove();
+            }
+
+            return;
+        }
+
+        // Stadtrat -> Tag auslesen
+        if (modus === 'tag') {
+
+            const match = text.match(/^(\d{1,2})\./);
+
+            if (!match) {
+                element.remove();
+                return;
+            }
+
+            const tag = parseInt(match[1], 10);
+
+            if (aktiveWahlbereiche[tag]) {
+                element.textContent = aktiveWahlbereiche[tag];
+            } else {
+                element.remove();
+            }
+        }
+
+    });
+
+});
+</script>
